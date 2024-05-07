@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GEO Redis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-w-full">
+    <div class="max-w-screen-lg mx-auto p-8">
+      <h1 class="text-3xl font-semibold mb-2">Geo Redis</h1>
+
+      <div class="w-full max-w-xs flex">
+        <form
+          class="form bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          action="http://localhost:5000/add_place"
+          method="GET"
+        >
+          <h2 class="font-semibold text-lg mb-2 text-gray-700">
+            Nuevo Lugar / Distancia
+          </h2>
+          <div class="inline-block relative w-64 mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-1"
+              for="team"
+            >
+              Team
+            </label>
+            <select
+              class="form-input shadow appearance-none border rounded w-full py-2 px-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="team"
+              name="team"
+            >
+              <option value="Cervecerias">Cervecerías artesanales</option>
+              <option value="Universidades">Universidades</option>
+              <option value="Farmacias">Farmacias</option>
+              <option value="Emergencias">
+                Centra de atención de emergencias
+              </option>
+              <option value="Supermercados">Supermercados</option>
+            </select>
+            <div
+              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 mt-7"
+            >
+              <svg
+                class="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-1"
+              for="name"
+            >
+              Name
+            </label>
+            <input
+              class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-1"
+                for="latitude"
+              >
+                Latitude
+              </label>
+              <input
+                class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="latitude"
+                name="latitude"
+                placeholder="Latitude"
+                type="number"
+                step="0.00000000001"
+                min="-90"
+                max="90"
+                required
+              />
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-1"
+                for="longitude"
+              >
+                Longitude
+              </label>
+              <input
+                class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="longitude"
+                name="longitude"
+                type="number"
+                placeholder="Longitude"
+                step="0.00000000001"
+                min="-90"
+                max="90"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <button
+              id="submit-button"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Cargar
+            </button>
+            <button
+              id="distance-button"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="button"
+              onclick="calculateDistance(this)"
+            >
+              Distancia
+            </button>
+          </div>
+        </form>
+
+        <div class="mx-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <h2 class="font-semibold text-lg mb-2 text-gray-700">
+            Lugares a 5km
+          </h2>
+          <form class="flex gap-4" action="http://localhost:5000" method="GET">
+            <div class="inline-block relative w-72 mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-1"
+                for="team"
+              >
+                Team
+              </label>
+              <select
+                class="shadow appearance-none border rounded w-full py-2 px-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="team"
+                name="team"
+              >
+                <option value="Cervecerias">Cervecerías artesanales</option>
+                <option value="Universidades">Universidades</option>
+                <option value="Farmacias">Farmacias</option>
+                <option value="Emergencias">
+                  Centra de atención de emergencias
+                </option>
+                <option value="Supermercados">Supermercados</option>
+              </select>
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 mt-7"
+              >
+                <svg
+                  class="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 mb-6 md:mb-0">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-1"
+                for="latitude"
+              >
+                Latitude
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="latitude"
+                name="latitude"
+                placeholder="Latitude"
+                type="number"
+                step="0.00000000001"
+                min="-90"
+                max="90"
+                required
+              />
+            </div>
+            <div class="w-full md:w-1/2 mb-6 md:mb-0">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-1"
+                for="longitude"
+              >
+                Longitude
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="longitude"
+                name="longitude"
+                type="number"
+                placeholder="Longitude"
+                step="0.00000000001"
+                min="-90"
+                max="90"
+              />
+            </div>
+
+            <div class="flex items-center justify-between mt-1">
+              <button
+                id="submit-button"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Buscar
+              </button>
+            </div>
+          </form>
+          <div class="places-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function calculateDistance() {
+        const form = document.querySelector(".form");
+        const inputs = form.querySelectorAll(".form-input");
+
+        const params = {};
+        for (const input of inputs) {
+          params[input.getAttribute("name")] = input.value;
+        }
+
+        const distanceFetch = await fetch(
+          "/distance?" +
+            `team=${params.team}&` +
+            `name=${params.name}&` +
+            `latitude=${params.latitude}&` +
+            `longitude=${params.longitude}`
+        );
+
+        if (distanceFetch.status != 200) {
+          return alert(await distanceFetch.text());
+        }
+
+        const distance = await distanceFetch.json();
+        alert(
+          `La distancia entre su ubicación y ${params.name} es de ${distance}km`
+        );
+      }
+
+      async function loadPlaces() {
+        const urlParams = new URLSearchParams(window.location.search);
+        team = urlParams.get("team");
+        latitude = urlParams.get("latitude");
+        longitude = urlParams.get("longitude");
+
+        if (!(team && latitude && longitude)) return;
+
+        const placesFetch = await fetch(
+          "/places?" +
+            `team=${team}&` +
+            `latitude=${latitude}&` +
+            `longitude=${longitude}`
+        );
+        const places = await placesFetch.json();
+
+        const placesList = document.querySelector(".places-list");
+        placesList.className = "bg-white shadow-md rounded p-2 mb-4 w-80";
+        for (const place of places) {
+          console.log(place);
+          const placeElem = document.createElement("div");
+          placeElem.innerHTML = `<h1>- ${place}</h1>`;
+          placesList.appendChild(placeElem);
+        }
+      }
+      loadPlaces();
+
+      // async function loadEpisodes() {
+      //   const list = document.querySelector(".chapters-list");
+      //   const card = document.querySelector(".chapter-card");
+
+      //   const episodesQuery = await fetch("/list_episodes");
+      //   const episodes = await episodesQuery.json();
+
+      //   const newCard = card.cloneNode(true);
+      //   newCard.classList.add("!flex");
+      //   card.remove();
+
+      //   for (const key of Object.keys(episodes)) {
+      //     const { state, title, price } = episodes[key];
+
+      //     const newEpisode = newCard.cloneNode(true);
+      //     newEpisode.querySelector(
+      //       ".title"
+      //     ).innerHTML = `Episode ${key}: ${title}`;
+      //     newEpisode.querySelector(".price").innerHTML = `$${price}`;
+      //     const reserveButton = newEpisode.querySelector(".reserve-button");
+      //     const rentButton = newEpisode.querySelector(".rent-button");
+      //     const rented = newEpisode.querySelector(".rented");
+      //     reserveButton.setAttribute("episode_key", key);
+      //     rentButton.setAttribute("episode_key", key);
+
+      //     if (state == "available") reserveButton.classList.add("!block");
+      //     else if (state == "reserved") rentButton.classList.add("!block");
+      //     else if (state == "rented") rented.classList.add("!block");
+
+      //     list.append(newEpisode);
+      //   }
+      // }
+
+      // async function onReserve(event) {
+      //   const key = event.getAttribute("episode_key");
+
+      //   const result = await fetch(`/rent_episode?episode=${key}`);
+
+      //   alert(await result.text());
+
+      //   location.reload();
+      // }
+
+      // async function onPayment(event) {
+      //   const key = event.getAttribute("episode_key");
+
+      //   const price = prompt("Ingrese el precio: ");
+
+      //   const result = await fetch(
+      //     `/confirm_pay?episode=${key}&price=${price}`
+      //   );
+
+      //   alert(await result.text());
+
+      //   location.reload();
+      // }
+
+      // loadEpisodes();
+    </script>
+  </body>
+</html>

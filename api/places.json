@@ -1,0 +1,152 @@
+[
+  {
+    "team": "Cervecerias",
+    "name": "Tractor",
+    "latitude": "-32.4811124",
+    "longitude": "-58.2405389"
+  },
+  {
+    "team": "Cervecerias",
+    "name": "7 Colinas",
+    "latitude": "-32.4799175",
+    "longitude": "-58.2400974"
+  },
+  {
+    "team": "Cervecerias",
+    "name": "Drakkar",
+    "latitude": "-32.4805704",
+    "longitude": "-58.2365059"
+  },
+  {
+    "team": "Cervecerias",
+    "name": "Lagash",
+    "latitude": "-32.477279",
+    "longitude": "-58.2508974"
+  },
+  {
+    "team": "Cervecerias",
+    "name": "Ambar",
+    "latitude": "-32.4821951",
+    "longitude": "-58.2375525"
+  },
+  {
+    "team": "Universidades",
+    "name": "UADER FCYT",
+    "latitude": "-32.4790794",
+    "longitude": "-58.2360397"
+  },
+  {
+    "team": "Universidades",
+    "name": "UTN FRCU",
+    "latitude": "-32.4957954",
+    "longitude": "-58.234477"
+  },
+  {
+    "team": "Universidades",
+    "name": "UCU",
+    "latitude": "-32.4815932",
+    "longitude": "-58.2322723"
+  },
+  {
+    "team": "Universidades",
+    "name": "UNER FCS",
+    "latitude": "-32.4804861",
+    "longitude": "-58.2638813"
+  },
+  {
+    "team": "Universidades",
+    "name": "UADER FCG",
+    "latitude": "-32.4846375",
+    "longitude": "-58.2433333"
+  },
+  {
+    "team": "Farmacias",
+    "name": "Alberdi",
+    "latitude": "-32.4861524",
+    "longitude": "-58.2354519"
+  },
+  {
+    "team": "Farmacias",
+    "name": "Entre Rios",
+    "latitude": "-32.4807236",
+    "longitude": "-58.2361798"
+  },
+  {
+    "team": "Farmacias",
+    "name": "Suarez",
+    "latitude": "-32.4866544",
+    "longitude": "-58.2335459"
+  },
+  {
+    "team": "Farmacias",
+    "name": "Ramirez",
+    "latitude": "-32.4838491",
+    "longitude": "-58.2339962"
+  },
+  {
+    "team": "Farmacias",
+    "name": "Yrigoyen",
+    "latitude": "-32.4778685",
+    "longitude": "-58.2423897"
+  },
+  {
+    "team": "Emergencias",
+    "name": "Alerta",
+    "latitude": "-32.4841659",
+    "longitude": "-58.2393068"
+  },
+  {
+    "team": "Emergencias",
+    "name": "VIDA",
+    "latitude": "-32.4830324",
+    "longitude": "-58.2335653"
+  },
+  {
+    "team": "Emergencias",
+    "name": "Circulo Catolico de Obreros",
+    "latitude": "-32.4794027",
+    "longitude": "-58.2351704"
+  },
+  {
+    "team": "Emergencias",
+    "name": "Hospital Justo Jose de Urquiza",
+    "latitude": "-32.4812786",
+    "longitude": "-58.2636688"
+  },
+  {
+    "team": "Emergencias",
+    "name": "Cooperativa Medica Ltda",
+    "latitude": "-32.4798677",
+    "longitude": "-58.2391874"
+  },
+  {
+    "team": "Supermercados",
+    "name": "Supremo",
+    "latitude": "-32.4849923",
+    "longitude": "-58.2346967"
+  },
+  {
+    "team": "Supermercados",
+    "name": "DIA",
+    "latitude": "-32.488504",
+    "longitude": "-58.2443485"
+  },
+  {
+    "team": "Supermercados",
+    "name": "Gran Rex",
+    "latitude": "-32.488481",
+    "longitude": "-58.2521001"
+  },
+  {
+    "team": "Supermercados",
+    "name": "Impulso",
+    "latitude": "-32.4746921",
+    "longitude": "-58.2495736"
+  },
+  {
+    "team": "Supermercados",
+    "name": "El Guri",
+    "latitude": "-32.4781389",
+    "longitude": "-58.2416491"
+  }
+]
