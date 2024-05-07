@@ -10,7 +10,6 @@ def connect_db():
         print("conectado a redis")
     else:
         print("error de conexion con redis")
-    # conexion.flushdb()
 
     return conexion
 
@@ -79,7 +78,4 @@ def distance():
 if __name__ == '__main__':
     init_db()
 
-    app.jinja_env.auto_reload = True
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(host='web-api-flask', port='5000', debug=True)
-

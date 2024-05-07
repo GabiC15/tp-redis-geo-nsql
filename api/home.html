@@ -273,65 +273,6 @@
         }
       }
       loadPlaces();
-
-      // async function loadEpisodes() {
-      //   const list = document.querySelector(".chapters-list");
-      //   const card = document.querySelector(".chapter-card");
-
-      //   const episodesQuery = await fetch("/list_episodes");
-      //   const episodes = await episodesQuery.json();
-
-      //   const newCard = card.cloneNode(true);
-      //   newCard.classList.add("!flex");
-      //   card.remove();
-
-      //   for (const key of Object.keys(episodes)) {
-      //     const { state, title, price } = episodes[key];
-
-      //     const newEpisode = newCard.cloneNode(true);
-      //     newEpisode.querySelector(
-      //       ".title"
-      //     ).innerHTML = `Episode ${key}: ${title}`;
-      //     newEpisode.querySelector(".price").innerHTML = `$${price}`;
-      //     const reserveButton = newEpisode.querySelector(".reserve-button");
-      //     const rentButton = newEpisode.querySelector(".rent-button");
-      //     const rented = newEpisode.querySelector(".rented");
-      //     reserveButton.setAttribute("episode_key", key);
-      //     rentButton.setAttribute("episode_key", key);
-
-      //     if (state == "available") reserveButton.classList.add("!block");
-      //     else if (state == "reserved") rentButton.classList.add("!block");
-      //     else if (state == "rented") rented.classList.add("!block");
-
-      //     list.append(newEpisode);
-      //   }
-      // }
-
-      // async function onReserve(event) {
-      //   const key = event.getAttribute("episode_key");
-
-      //   const result = await fetch(`/rent_episode?episode=${key}`);
-
-      //   alert(await result.text());
-
-      //   location.reload();
-      // }
-
-      // async function onPayment(event) {
-      //   const key = event.getAttribute("episode_key");
-
-      //   const price = prompt("Ingrese el precio: ");
-
-      //   const result = await fetch(
-      //     `/confirm_pay?episode=${key}&price=${price}`
-      //   );
-
-      //   alert(await result.text());
-
-      //   location.reload();
-      // }
-
-      // loadEpisodes();
     </script>
   </body>
 </html>
